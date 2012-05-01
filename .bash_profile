@@ -1,29 +1,45 @@
-# Load ~/.extra, ~/.bash_prompt, ~/.exports, ~/.aliases and ~/.functions
-# ~/.extra can be used for settings you don’t want to commit
-for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
-	[ -r "$file" ] && source "$file"
-done
-unset file
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
 
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend
+if [ -f `brew --prefix`/etc/autojump ]; then
+  . `brew --prefix`/etc/autojump
+fi
 
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
+alias ll="ls -lah"
 
-# Prefer US English and use UTF-8
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US"
+alias start_pow="launchctl load $HOME/Library/LaunchAgents/cx.pow.powd.plist"
+alias stop_pow="launchctl unload $HOME/Library/LaunchAgents/cx.pow.powd.plist"
+alias poststart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias poststop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+alias rdbr='~/scripts/postgres_stop && ~/scripts/postgres_start && rake db:drop db:create db:migrate db:test:prepare'
 
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
+alias vim='mvim -v'
 
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults
+alias r='bundle exec rails'
+alias b='bundle exec'
+alias c='bundle exec cap'
+alias gs='bundle exec guard start'
+alias f='git flow feature'
+alias release='git flow release'
+alias rk='b rake'
+alias mig='b rake db:migrate db:test:prepare'
+alias grup='git remote show | sed '\''/heroku/d'\'' | xargs -I {} git remote update {} --prune'
+alias git-review='git diff -U25 master..HEAD | gitx'
+alias tdl='tail -f log/development.log'
+alias rj='rake jasmine'
+alias gba='git branch -a'
+alias be='bundle exec'
+alias g='grup'
+alias gpoh='git push origin HEAD'
 
-# Add `killall` tab completion for common apps
-complete -o "nospace" -W "Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer" killall
+complete -o default -o nospace -F __git_flow_feature f
+complete -o default -o nospace -F __git_flow_release release
+
+export BUNDLER_EDITOR=mvim
+
+source /usr/local/etc/bash_completion.d/git-completion.bash
+
+PATH=/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/mysql/5.5.14/bin:$PATH
