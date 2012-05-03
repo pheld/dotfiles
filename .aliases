@@ -8,17 +8,12 @@ alias -- -="cd -"
 alias d="cd ~/Documents/Dropbox"
 alias p="cd ~/Projects"
 alias g="git"
-alias v="vim"
-alias m="mate ."
-alias s="subl ."
-alias o="open"
-alias oo="open ."
 
 # List all files colorized in long format
 alias l="ls -Gl"
 
 # List all files colorized in long format, including dot files
-alias la="ls -Gla"
+alias ll="ls -Gla"
 
 # List only directories
 alias lsd='ls -l | grep "^d"'
@@ -102,3 +97,28 @@ done
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 10'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+
+# Web dev
+alias start_pow="launchctl load $HOME/Library/LaunchAgents/cx.pow.powd.plist"
+alias stop_pow="launchctl unload $HOME/Library/LaunchAgents/cx.pow.powd.plist"
+alias poststart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias poststop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
+alias rdbr='~/scripts/postgres_stop && ~/scripts/postgres_start && rake db:drop db:create db:migrate db:test:prepare'
+alias r='bundle exec rails'
+alias b='bundle exec'
+alias c='bundle exec cap'
+alias gs='bundle exec guard start'
+alias f='git flow feature'
+alias release='git flow release'
+alias gpoh='git push origin head'
+alias rk='b rake'
+alias mig='b rake db:migrate db:test:prepare'
+alias grup='git remote show | sed '\''/heroku/d'\'' | xargs -I {} git remote update {} --prune'
+alias g='git remote show | sed '\''/heroku/d'\'' | xargs -I {} git remote update {} --prune'
+alias git-review='git diff -U25 master..HEAD | gitx'
+alias gba='git branch -a'
+alias tdl='tail -f log/development.log'
+alias rj='rake jasmine'
+alias be='bundle exec'
+alias vim='mvim -v'
+alias sussudio='sudo'
