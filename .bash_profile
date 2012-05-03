@@ -1,45 +1,37 @@
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+# Load ~/.extra, ~/.bash_prompt, ~/.exports, ~/.aliases and ~/.functions
+# ~/.extra can be used for settings you don’t want to commit
+for file in ~/.{bash_prompt,aliases}; do
+[ -r "$file" ] && source "$file"
+done
+unset file
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
+  . `brew --prefix`/etc/bash_completion
 fi
 
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
-fi
-
-alias ll="ls -lah"
-
-alias start_pow="launchctl load $HOME/Library/LaunchAgents/cx.pow.powd.plist"
-alias stop_pow="launchctl unload $HOME/Library/LaunchAgents/cx.pow.powd.plist"
-alias poststart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
-alias poststop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
-alias rdbr='~/scripts/postgres_stop && ~/scripts/postgres_start && rake db:drop db:create db:migrate db:test:prepare'
-
-alias vim='mvim -v'
-
-alias r='bundle exec rails'
-alias b='bundle exec'
-alias c='bundle exec cap'
-alias gs='bundle exec guard start'
-alias f='git flow feature'
-alias release='git flow release'
-alias rk='b rake'
-alias mig='b rake db:migrate db:test:prepare'
-alias grup='git remote show | sed '\''/heroku/d'\'' | xargs -I {} git remote update {} --prune'
-alias git-review='git diff -U25 master..HEAD | gitx'
-alias tdl='tail -f log/development.log'
-alias rj='rake jasmine'
-alias gba='git branch -a'
-alias be='bundle exec'
-alias g='grup'
-alias gpoh='git push origin HEAD'
+function mvim { /Applications/MacVim.app/Contents/MacOS/Vim -g $*; }
 
 complete -o default -o nospace -F __git_flow_feature f
 complete -o default -o nospace -F __git_flow_release release
 
 export BUNDLER_EDITOR=mvim
 
-source /usr/local/etc/bash_completion.d/git-completion.bash
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWUPSTREAM=verbose
+PS1="${COLOR_RED}[${COLOR_WHITE}\t ${COLOR_NONE}\W${COLOR_GREEN}\$(__git_ps1 ' (%s)')${COLOR_RED}]${COLOR_NONE}\$ "
 
-PATH=/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/mysql/5.5.14/bin:$PATH
+PATH=/usr/local/bin:$PATH
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+export LS_OPTIONS='--color=auto'
+export CLICOLOR='Yes'
+export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
+
+if [ -f `brew --prefix`/etc/autojump ]; then
+  . `brew --prefix`/etc/autojump
+fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
