@@ -91,7 +91,7 @@ set laststatus=2
 set t_Co=256
 let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 let g:CSApprox_eterm = 1
-color molokai
+color twilight_bright
 
 " Show (partial) command in the status line
 set showcmd
@@ -120,6 +120,7 @@ au FileType make set noexpandtab
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 au BufNewFile,BufRead *.json set ft=javascript
 au BufNewFile,BufRead *.hamlbars set ft=haml
+au BufNewFile,BufRead *.ejs set ft=eruby
 
 " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
@@ -160,9 +161,9 @@ set winwidth=84
 " We have to have a winheight bigger than we want to set winminheight. But if
 " we set winheight to be huge before winminheight, the winminheight set will
 " fail.
-set winheight=5
-set winminheight=5
-set winheight=999
+" set winheight=5
+" set winminheight=5
+" set winheight=999
 
 function! SaveIfModified()
   if &modified
@@ -301,3 +302,16 @@ autocmd FileType help exe QuitWithQ()
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=#fbefeb guifg=#bf542f
+  elseif a:mode == 'r'
+    hi statusline guibg=#faf6e8 guifg=#dab826
+  else
+    hi statusline guibg=#e3f4ff guifg=#417598
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=#e3f4ff guifg=#417598
