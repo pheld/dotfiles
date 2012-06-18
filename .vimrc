@@ -158,12 +158,6 @@ set scrolloff=2
 
 " Make the window we're on as big as it makes sense to make it
 set winwidth=84
-" We have to have a winheight bigger than we want to set winminheight. But if
-" we set winheight to be huge before winminheight, the winminheight set will
-" fail.
-" set winheight=5
-" set winminheight=5
-" set winheight=999
 
 function! SaveIfModified()
   if &modified
@@ -237,16 +231,6 @@ if has('mouse')
     autocmd BufEnter * set ttymouse=xterm2
   endif
 endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Preview window size hack
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! ResizePreviewWindow()
-  if &previewwindow
-    set winheight=999
-  endif
-endfunction
-au WinEnter * call ResizePreviewWindow()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vroom
