@@ -299,3 +299,5 @@ endfunction
 
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=#e3f4ff guifg=#417598
+
+set ttimeoutlen=5
