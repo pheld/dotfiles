@@ -301,3 +301,18 @@ au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=#e3f4ff guifg=#417598
 
 set ttimeoutlen=5
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline configuration, you'll need a powerline patched font.
+" You should probably use inconsolata-g (included in fonts directory)
+"
+" If not, you can patch your own.
+" See: https://github.com/Lokaltog/vim-powerline/tree/develop/fontpatcher
+" You'll probably need this too: https://github.com/jenius/Fontforge-Installer
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_stl_path_style = 'short'
+call Pl#Theme#RemoveSegment('fugitive:branch')
+call Pl#Theme#RemoveSegment('fileformat')
+call Pl#Theme#RemoveSegment('fileencoding')
+call Pl#Theme#RemoveSegment('scrollpercent')
