@@ -41,6 +41,7 @@ Bundle 'ap/vim-css-color'
 Bundle 'CSApprox'
 Bundle 'ervandew/supertab'
 Bundle 'skalnik/vim-vroom'
+Bundle 'Lokaltog/vim-powerline'
 
 :runtime macros/matchit.vim
 
