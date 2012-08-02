@@ -42,6 +42,7 @@ Bundle 'CSApprox'
 Bundle 'ervandew/supertab'
 Bundle 'skalnik/vim-vroom'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'noahfrederick/Hemisu'
 
 :runtime macros/matchit.vim
 
