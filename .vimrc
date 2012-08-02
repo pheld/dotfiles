@@ -317,3 +317,5 @@ call Pl#Theme#RemoveSegment('fugitive:branch')
 call Pl#Theme#RemoveSegment('fileformat')
 call Pl#Theme#RemoveSegment('fileencoding')
 call Pl#Theme#RemoveSegment('scrollpercent')
+
+map <leader>a :Ack<space>
