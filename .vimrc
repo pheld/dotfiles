@@ -321,3 +321,4 @@ call Pl#Theme#RemoveSegment('fileencoding')
 call Pl#Theme#RemoveSegment('scrollpercent')
 
 map <leader>a :Ack<space>
+map <leader>n :NERDTree<CR>
