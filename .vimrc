@@ -43,6 +43,7 @@ Bundle 'ervandew/supertab'
 Bundle 'skalnik/vim-vroom'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'noahfrederick/Hemisu'
+Bundle 'The-NERD-tree'
 
 :runtime macros/matchit.vim
 
