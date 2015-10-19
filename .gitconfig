@@ -116,7 +116,12 @@
   ds = diff --stat=160,120
   dh1 = diff HEAD~1
   ru = remote update --prune
+
 [format]
   pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
+
 [merge]
-	tool = kdiff3
+  tool = kdiff3
+
+[rerere]
+  enabled = true
