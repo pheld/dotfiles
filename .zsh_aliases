@@ -1,0 +1,6 @@
+# List all files colorized in long format, including dot files
+alias ll="ls -Gla"
+
+# Git aliases
+alias g='git remote show | sed '\''/heroku/d'\'' | xargs -I {} git remote update {} --prune'
+alias gba='git branch -a'
