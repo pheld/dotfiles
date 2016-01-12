@@ -84,3 +84,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source ~/.zsh_aliases
+
+export PATH="$PATH:/usr/local/go/bin" # Add Go to PATH
+export GOPATH="$HOME/work" # Create Go path
